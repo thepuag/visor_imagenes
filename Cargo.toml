@@ -1,10 +1,18 @@
 [package]
-name = "visor_imagenes"
+name = "image-viewer"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
 eframe = "0.31.1"
 egui = "0.31.1"
-image = "0.25.6"
+image = { version = "0.25", features = ["png", "jpeg", "gif", "bmp", "tiff", "webp"] }
 rfd = "0.15.3"
+rayon = "1.8"
+num_cpus = "1.16"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
