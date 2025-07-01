@@ -5,12 +5,17 @@ use image::ImageReader; // Corrección: importar directamente ImageReader
 use std::path::{PathBuf, Path};
 use std::fs;
 
+    const APP_NAME: &str = "Visor de Imágenes";
+    const APP_VERSION: &str = "1.0";
+    const APP_AUTHOR: &str = "Noé Montoro García";
+
 struct ImageViewerApp {
     current_image: Option<TextureHandle>,
     image_paths: Vec<PathBuf>,
     current_index: usize,
     fullscreen: bool,
     image_dir: Option<PathBuf>,
+    show_about: bool,
 }
 
 impl Default for ImageViewerApp {
@@ -21,6 +26,7 @@ impl Default for ImageViewerApp {
             current_index: 0,
             fullscreen: false,
             image_dir: None,
+            show_about: false,
         }
     }
 }
@@ -126,7 +132,7 @@ impl eframe::App for ImageViewerApp {
                     self.previous_image(ctx);
                 }
 
-                if ui.button("➡️ Siguiente").clicked() {
+                if ui.button("➡️ Siguiente").clicked() { 
                     self.next_image(ctx);
                 }
 
@@ -135,6 +141,27 @@ impl eframe::App for ImageViewerApp {
                     ctx.send_viewport_cmd(egui::ViewportCommand::Fullscreen(true));
                     self.fullscreen = true;
                 }
+
+                if ui.button("ℹ️ Acerca de").clicked() {
+                    self.show_about = true;
+                }
+                if self.show_about {
+                    egui::Window::new("Acerca de")
+                        .collapsible(false)
+                        .resizable(false)
+                        .anchor(egui::Align2::CENTER_CENTER, [0.0, 0.0])
+                        .show(ctx, |ui| {
+                            ui.label(format!("{} v{}", APP_NAME, APP_VERSION));
+                            ui.label(format!("Autor: {}", APP_AUTHOR));
+                            ui.separator();
+                            ui.label("Visor de Imágenes hecho en Rust con eframe y egui.");
+                            
+                            if ui.button("Cerrar").clicked() {
+                                self.show_about = false;
+                }
+             });
+}
+
             });
         });
 
@@ -169,9 +196,9 @@ fn main() -> Result<(), eframe::Error> {
             .with_drag_and_drop(true), // Esto es para drag and drop
         ..Default::default()
     };
-    
+
     eframe::run_native(
-        "Visor de Imágenes",
+        APP_NAME,
         options,
         // Corrección: devolver Ok() como espera la función
         Box::new(|_cc| Ok(Box::new(ImageViewerApp::default()))),
