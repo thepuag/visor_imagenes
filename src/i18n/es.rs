@@ -1,0 +1,16 @@
+pub const BTN_OPEN: &str = "Abrir Imagen";
+pub const BTN_NEXT: &str = "Siguiente";
+pub const BTN_PREV: &str = "Anterior";
+pub const BTN_CLOSE: &str = "Cerrar";
+pub const BTN_FULLSCREEN: &str = "Pantalla Completa";
+pub const BTN_EXIT_FULLSCREEN: &str = "Salir";
+pub const BTN_ABOUT: &str = "Acerca de";
+pub const ERROR_DECODE: &str = "Error al decodificar la imagen";
+pub const ERROR_FORMAT: &str = "Error al determinar formato de";
+pub const ERROR_OPEN: &str = "Error al abrir la imagen";
+pub const TEXT_INFOAPP: &str = "Visor de Imágenes hecho en Rust con eframe y egui.";
+pub const TEXT_AUTHOR: &str = "Autor: ";
+pub const TEXT_LOADINGIMG: &str = "⏳ Cargando imagen...";
+pub const TEXT_F11FULLSCREEN: &str = "F11 para pantalla completa";
+pub const TEXT_ROWSORSPACE: &str = "Usa las flechas ← → o Espacio para navegar";
+pub const TEXT_OPENIMG: &str = "📂 Abre una imagen para comenzar";

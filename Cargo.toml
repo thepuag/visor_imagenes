@@ -1,15 +1,18 @@
 [package]
-name = "image-viewer"
-version = "0.1.0"
+name = "visor-ligero"
+version = "0.1.1"
 edition = "2021"
 
 [dependencies]
 eframe = "0.31.1"
 egui = "0.31.1"
-image = { version = "0.25", features = ["png", "jpeg", "gif", "bmp", "tiff", "webp"] }
+image = { version = "0.25", features = ["png", "jpeg", "gif", "bmp", "tiff", "webp", "pnm", "ico", "dds"] }
 rfd = "0.15.3"
 rayon = "1.8"
 num_cpus = "1.16"
+i18n = "0.0.2"
+resvg = "0.45.1"
+usvg = "0.35"
 
 [profile.release]
 opt-level = 3
